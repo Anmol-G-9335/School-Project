@@ -486,16 +486,24 @@ def menu_5():  # Report card generation
 
 
 def menu_6():
-    subject = ("English", "Mathematics", "Physics", "Chemistry", "Computer Science", "Physical Education")
-    print("Which two subjects do you want to compare?\n1.English (1)\n2.Mathematics (2)\n 3.Physics (3)\n 4.Chemistry ("
-          "4)\n 5.Computer Science (5)\n 6.Physical Education (6)")
-    input1 = int(input("enter subject 1 of your choice"))
-    input2 = int(input("enter subject 2 of your choice"))
+    global menu_6_text
+    global menu_6_text_2
+    subject = ["English", "Mathematics", "Physics", "Chemistry", "Computer Science", "Physical Education"]
     assignments = ["sem_1_exam", "sem_1_internal", "sem_1_final", "sem_2_exam", "sem_2_internal", "sem_2_final"]
     alt_assignments = ["sem_1_practical", "sem_2_practical"]
-    print("Assignments:\n1. sem_1_exam\n2. sem_1_internal/practical\n3. sem_1_final\n4. sem_2_exam\n5. "
-          "sem_2_internal/practical\n6. sem_2_final")
-    input_assignment = int(input("Enter the corresponding index of the desired assignment:"))
+
+    input1 = get_input(menu_6_text,"enter subject 1 of your choice",True,list(range(1,8)))
+    if input1 == 8:
+        return
+    input2 = get_input(None,"enter subject 2 of your choice",True,list(range(0,8)),False)
+    if input2 == 8:
+        return
+    
+    input_assignment = get_input(menu_6_text_2,
+                                 "Enter the corresponding index of the desired assignment:",
+                                 True,list(range(1,8)))
+    if input_assignment == 8:
+        return
     assignment = assignments[input_assignment - 1]
 
     sub1 = subject[input1 - 1]
@@ -774,6 +782,25 @@ column_names = (  # student list
      'Total', 'Pass'))
 # menu_5
 menu_5_text = 'Enter Roll Number to generate report card for'
+
+#menu_6
+menu_6_text = '''Which two subjects do you want to compare?
+1.English
+2.Mathematics
+3.Physics
+4.Chemistry
+5.Computer Science
+6.Physical Education
+7.Exit submenu'''
+
+menu_6_text_2 = '''Assignments:
+1.sem_1_exam
+2.sem_1_internal/practical
+3.sem_1_final
+4.sem_2_exam
+5.sem_2_internal/practical
+6.sem_2_final
+7.Exit submenu'''
 
 ###
 
