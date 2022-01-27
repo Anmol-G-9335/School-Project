@@ -556,7 +556,6 @@ def menu_6():
             coord2.append(0)
             pass
 
-    plt.style.use('dark_background')
     plt.plot(data1, data2, "o")
 
     ax.set_title(f"{subject[int(input1) - 1]} v {subject[int(input2) - 1]}")
