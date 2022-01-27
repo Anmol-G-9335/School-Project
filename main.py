@@ -628,6 +628,135 @@ def menu_6():
     plt.show()
 
 
+def menu_7():
+    student_list = sql.get_data(table='student_list')
+
+    # function to show the proportion of CS Students
+    cs_count = 0
+    pe_count = 0
+    for i in range(49):
+        cs_count += student_list[i][6]
+        pe_count += student_list[i][7]
+    plt.pie([cs_count, pe_count], labels=['Students studying CS', 'Students studying PE'],
+            colors=['#2ca2a3', '#7c1a1a'],
+            wedgeprops={'edgecolor': 'black'})
+    plt.show()
+
+
+# function to compare total marks of every subject
+def menu_8():
+    # getting values from the database as nested lists
+    student_list = sql.get_data(table='student_list')
+    eng = sql.get_data(table='eng')
+    math = sql.get_data(table='math')
+    phy = sql.get_data(table='phy')
+    chem = sql.get_data(table='chem')
+    cs = sql.get_data(table='cs')
+    pe = sql.get_data(table='pe')
+
+    global menu_8_text
+    subj = get_input(menu_8_text, "Enter subject of your choice", True, list(range(1, 8)))
+    if subj == 8:
+        return
+
+    # subject dictionary
+    sub_dict = {1: ['Eng', eng], 2: ['Mathematics', math], 3: ['Physics', phy], 4: ['Chemistry', chem],
+                5: ['Computer Science', cs], 6: ['Physical Education', pe]}
+
+    plt.style.use('dark_background')
+    plt.tick_params(labelsize=7)
+    x_label = []
+    value = []
+    for i in range(49):
+        if student_list[i][subj] == 1:
+            x_label.append(student_list[i][1])
+            value.append(sub_dict[subj][1][i][7])
+
+    plt.barh(x_label, value, height=0.6, label=sub_dict[subj][0], color='#129aa2')
+    plt.title(sub_dict[subj][0])
+    plt.tight_layout()
+    plt.legend()
+    plt.show()
+
+
+# function to show student analysis,
+# Use type: 'stack' or 'line'
+# and roll for the roll number of the student
+def menu_9():
+    student_list = sql.get_data(table='student_list')
+    eng = sql.get_data(table='eng')
+    math = sql.get_data(table='math')
+    phy = sql.get_data(table='phy')
+    chem = sql.get_data(table='chem')
+    cs = sql.get_data(table='cs')
+    pe = sql.get_data(table='pe')
+
+    global menu_9_text
+    global menu_9_text_2
+    print(menu_9_text)
+    roll = int(input("Enter desired roll no. "))
+    print(menu_9_text_2)
+    typ = input("Enter desired type of plot ")
+
+    # declaring variables and initial arguments
+    roll -= 1
+    plt.style.use('dark_background')
+    plt.tick_params(labelsize=8)
+    assignment = ['Sem 1 Exam', 'Sem 1 Internal', 'Sem 1 Final', 'Sem 2 Exam', 'Sem 2 Internal', 'Sem 2 Final', 'Total']
+    x = [1, 2, 3, 4, 5, 6, 7]
+    eng_val = []
+    math_val = []
+    phy_val = []
+    chem_val = []
+    cs_val = []
+    pe_val = []
+
+    # Generating lists
+    for i in range(1, 8):
+        temp = eng
+        eng_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+        temp = math
+        math_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+        temp = phy
+        phy_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+        temp = chem
+        chem_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+        if student_list[roll][6] == 1:
+            temp = cs
+            cs_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+        elif student_list[roll][7] == 1:
+            temp = pe
+            pe_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
+
+    # line chart part
+    if typ == 'line':
+        if student_list[roll][6] == 1:
+            plt.plot(x, cs_val, color='#33c1cf', label='Computer Science', marker='.')
+        elif student_list[roll][7] == 1:
+            plt.plot(x, pe_val, color='#eb8d2f', label='Physical Education', marker='.')
+        plt.plot(x, eng_val, color='#cfcf11', label='English', marker='.')
+        plt.plot(x, math_val, color='#cf5555', label='Mathematics', marker='.')
+        plt.plot(x, phy_val, color='#cf11cf', label='Physics', marker='.')
+        plt.plot(x, chem_val, color='#10cf93', label='Chemistry', marker='.')
+
+    # stack plot part
+    elif typ == 'stack':
+        if student_list[roll][6] == 1:
+            plt.stackplot(x, eng_val, math_val, phy_val, chem_val, cs_val,
+                          labels=['English', 'Mathematics', 'Physics', 'Chemistry', 'Computer Science'],
+                          colors=['#dede5b', '#a85858', '#a860a8', '#4cb090', '#518c91'])
+        elif student_list[roll][7] == 1:
+            plt.stackplot(x, eng_val, math_val, phy_val, chem_val, pe_val,
+                          labels=['English', 'Mathematics', 'Physics', 'Chemistry', 'Physical Education'],
+                          colors=['#dede5b', '#a85858', '#a860a8', '#4cb090', '#a16325'])
+
+    # post processing the plot and figure widgets
+    plt.legend()
+    plt.title(student_list[roll][1])
+    plt.xticks(ticks=x, labels=assignment)
+    plt.tight_layout()
+    plt.show()
+
 # menu_main
 '''***Student DB***
 1.Display Data
@@ -802,6 +931,20 @@ menu_6_text_2 = '''Assignments:
 6.sem_2_final
 7.Exit submenu'''
 
+menu_8_text = '''Which subject's totals do you want to compare?
+1.English
+2.Mathematics
+3.Physics
+4.Chemistry
+5.Computer Science
+6.Physical Education
+7.Exit submenu'''
+
+menu_9_text = '''Choose a roll number'''
+menu_9_text_2 = '''Choose type of plot:
+1. Line Graph (line)
+2. Stack Plot (stack)'''
+
 ###
 
 time_sleep = 1  # sec
@@ -816,10 +959,10 @@ while True:  # menu loop
     while True:  # loop till correct data is inputted
         clear_screen()
         menu_main_choice = get_input(menu_main_text, 'What to do?', True,
-                                     list(range(1, 8)))  # menu_n representing menu where n is integer
+                                     list(range(1, 11)))  # menu_n representing menu where n is integer
         if menu_main_choice != -1:
             break
-    if menu_main_choice == 1:
+        if menu_main_choice == 1:
         menu_1()  # display
     elif menu_main_choice == 2:
         menu_2()  # insert
@@ -831,7 +974,13 @@ while True:  # menu loop
         menu_5()
     elif menu_main_choice == 6:
         menu_6()
-    elif menu_main_choice == 7:  # exit
+    elif menu_main_choice == 7:
+        menu_7()
+    elif menu_main_choice == 8:
+        menu_8()
+    elif menu_main_choice == 9:
+        menu_9()
+    elif menu_main_choice == 10:  # exit
         for i in range(1, 4):
             clear_screen()
             print('Exiting' + i * '.')
