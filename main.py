@@ -765,19 +765,25 @@ def menu_9():
 4.Remove Data
 5.Results/Performance
 6.Compare Subjects
-7.Exit'''
+7.Show CS
+8.Compare Total
+9.Line/Stack Plot
+10.Exit'''
 menu_main_text = ''' ___________________
-((-----------------((
- ))  STUDENT DB     ))
-((-----------------((
- )) 1.Display Entry ))
-(( 2.Insert Entry  ((
- )) 3.Update Entry  ))
-(( 4.Remove Entry  (( 
- )) 5.GenerateReport))
-(( 6.CompareSubject((
- )) 7.Exit          ))
-((_________________(('''  # Generate result(individual and class statistics)
+((------------------((
+ ))  STUDENT DB      ))
+((------------------((
+ )) 1.Display Entry  ))
+(( 2.Insert Entry   ((
+ )) 3.Update Entry   ))
+(( 4.Remove Entry   (( 
+ )) 5.Generate Report))
+(( 6.Compare Subject((
+ )) 7.Show CS        ))
+(( 8.Compare Total  ((
+ )) 9.Line/Stack Plot)) 
+(( 10.Exit          ((
+ ))__________________))'''  # Generate result(individual and class statistics)
 # display or search
 
 # menu_1
