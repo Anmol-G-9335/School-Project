@@ -687,7 +687,7 @@ def menu_9():
     print(menu_9_text)
     roll = int(input("Enter desired roll no. "))
     print(menu_9_text_2)
-    typ = input("Enter desired type of plot ")
+    typ = int(input("Enter desired type of plot "))
 
     # declaring variables and initial arguments
     roll -= 1
@@ -720,7 +720,7 @@ def menu_9():
             pe_val.append((temp[roll][i] / temp[len(temp) - 1][i]) * 100)
 
     # line chart part
-    if typ == 'line':
+    if typ == 1:
         if student_list[roll][6] == 1:
             plt.plot(x, cs_val, color='#33c1cf', label='Computer Science', marker='.')
         elif student_list[roll][7] == 1:
@@ -731,7 +731,7 @@ def menu_9():
         plt.plot(x, chem_val, color='#10cf93', label='Chemistry', marker='.')
 
     # stack plot part
-    elif typ == 'stack':
+    elif typ == 2:
         if student_list[roll][6] == 1:
             plt.stackplot(x, eng_val, math_val, phy_val, chem_val, cs_val,
                           labels=['English', 'Mathematics', 'Physics', 'Chemistry', 'Computer Science'],
@@ -941,8 +941,8 @@ menu_8_text = '''Which subject's totals do you want to compare?
 
 menu_9_text = '''Choose a roll number'''
 menu_9_text_2 = '''Choose type of plot:
-1. Line Graph (line)
-2. Stack Plot (stack)'''
+1. Line Graph
+2. Stack Plot'''
 
 ###
 
