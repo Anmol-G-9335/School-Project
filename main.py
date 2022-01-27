@@ -492,16 +492,16 @@ def menu_6():
     assignments = ["sem_1_exam", "sem_1_internal", "sem_1_final", "sem_2_exam", "sem_2_internal", "sem_2_final"]
     alt_assignments = ["sem_1_practical", "sem_2_practical"]
 
-    input1 = get_input(menu_6_text,"enter subject 1 of your choice",True,list(range(1,8)))
+    input1 = get_input(menu_6_text, "enter subject 1 of your choice", True, list(range(1, 8)))
     if input1 == 8:
         return
-    input2 = get_input(None,"enter subject 2 of your choice",True,list(range(0,8)),False)
+    input2 = get_input(None, "enter subject 2 of your choice", True, list(range(0, 8)), False)
     if input2 == 8:
         return
-    
+
     input_assignment = get_input(menu_6_text_2,
                                  "Enter the corresponding index of the desired assignment:",
-                                 True,list(range(1,8)))
+                                 True, list(range(1, 8)))
     if input_assignment == 8:
         return
     assignment = assignments[input_assignment - 1]
@@ -556,6 +556,7 @@ def menu_6():
             coord2.append(0)
             pass
 
+    plt.style.use('dark_background')
     plt.plot(data1, data2, "o")
 
     ax.set_title(f"{subject[int(input1) - 1]} v {subject[int(input2) - 1]}")
@@ -564,67 +565,58 @@ def menu_6():
 
     if assignment in ("sem_1_internal", "sem_2_internal"):
         if sub1 in ("English", "Mathematics") and sub2 in ("English", "Mathematics"):
-            ax.text((max(coord1)-6), 20.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 6), 20.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         elif sub1 in ("English", "Mathematics"):
-            ax.text((max(coord1)-6), 30.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 6), 30.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         elif sub2 in ("English", "Mathematics"):
-            ax.text((max(coord1)-6), 20.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 6), 20.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         else:
-            ax.text((max(coord1)-6), 30.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 6), 30.5, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 0.5), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
     elif assignment in ("sem_1_final", "sem_2_final"):
-        ax.text((max(coord1)-40), 101, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                color="red",
-                size="8")
-        ax.text((min(coord1)+3), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                color="red", size="8")
+        ax.text((max(coord1) - 40), 101, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                color="#ff6f59", size="8")
+        ax.text((min(coord1) + 3), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                color="#ff6f59", size="8")
     elif assignment in ("sem_1_exam", "sem_2_exam"):
         if sub1 in ("English", "Mathematics") and sub2 in ("English", "Mathematics"):
-            ax.text((max(coord1)-20), 81, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 30), 81, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         elif sub1 in ("English", "Mathematics"):
-            ax.text((max(coord1)-20), 71, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 30), 71, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         elif sub2 in ("English", "Mathematics"):
-            ax.text((max(coord1)-20), 81, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 30), 81, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
         else:
-            ax.text((max(coord1)-20), 71, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                    color="red",
-                    size="8")
-            ax.text((min(coord1)+2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                    color="red", size="8")
+            ax.text((max(coord1) - 30), 71, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
+            ax.text((min(coord1) + 2), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                    color="#ff6f59", size="8")
     else:
-        ax.text((max(coord1)-40), 101, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
-                color="red",
-                size="8")
-        ax.text((min(coord1)+3), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
-                color="red", size="8")
+        ax.text((max(coord1) - 40), 101, f"Strong {subject[int(input1) - 1]} , strong {subject[int(input2) - 1]}",
+                color="#ff6f59", size="8")
+        ax.text((min(coord1) + 3), 0, f"Weak {subject[int(input1) - 1]}, weak {subject[int(input2) - 1]}",
+                color="#ff6f59", size="8")
 
+    plt.style.use('dark_background')
     plt.show()
 
 
@@ -757,6 +749,8 @@ def menu_9():
     plt.tight_layout()
     plt.show()
 
+
+# use plt.close() to close plots between steps
 # menu_main
 '''***Student DB***
 1.Display Data
@@ -799,7 +793,7 @@ menu_1a_text = '''***Search record***
 3.exit'''
 
 # menu_1a1
-menu_1a1_text = '**Search by Roll No.***'
+menu_1a1_text = '***Search by Roll No.***'
 
 # get_roll_no_list
 get_roll_no_list_text = '''1.For range use'-' to separate two numbers
@@ -918,7 +912,7 @@ column_names = (  # student list
 # menu_5
 menu_5_text = 'Enter Roll Number to generate report card for'
 
-#menu_6
+# menu_6
 menu_6_text = '''Which two subjects do you want to compare?
 1.English
 2.Mathematics
@@ -968,7 +962,7 @@ while True:  # menu loop
                                      list(range(1, 11)))  # menu_n representing menu where n is integer
         if menu_main_choice != -1:
             break
-        if menu_main_choice == 1:
+    if menu_main_choice == 1:
         menu_1()  # display
     elif menu_main_choice == 2:
         menu_2()  # insert
