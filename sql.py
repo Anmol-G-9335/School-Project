@@ -2,14 +2,14 @@ import mysql.connector as c
 
 user_name = "root"
 host_name = "localhost"
-password = "GODHulk228"
+password = "password"
 
 
 # call this function for getting data from DB
 
 def get_data(column_to_display='*',
              table='student_list',
-             constraint=None, ):  # supply custom query but results may not be flexible
+             constraint=None):  # supply custom query but results may not be flexible
     global user_name
     global host_name
     global password
@@ -19,13 +19,11 @@ def get_data(column_to_display='*',
                       database="student_db")
     cursor = mycon.cursor()
     if not constraint:
-        query = f'select {column_to_display} from student_db.{table};'
-        #        query = f'select {} from {};'.format(column_to_display,table)
+        query = f'select {column_to_display} from student_db.{table} order by roll_no;'
         cursor.execute(query)
         data = cursor.fetchall()
     else:
         query = f'select {column_to_display} from student_db.{table} where {constraint};'
-        #        query = f'select {} from {} where {};'.format(column_to_display,table,constraint)
         cursor.execute(query)
         data = cursor.fetchall()
     cursor.close()
